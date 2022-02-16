@@ -31,3 +31,18 @@ struct temp:Codable{
 struct DailyForecast:Codable{
     var daily:[DailyResult]
 }
+
+// 24Hours Forecast
+struct HourlyResult:Codable{
+    var dt : Double
+    var temp : Double
+    var feels_like : Double
+    var humidity : Double
+    var wind_deg : Int
+    var weather : [weather]
+    
+}
+
+struct HourlyForecast:Codable{
+    var hourly : [HourlyResult]
+}

@@ -59,22 +59,24 @@ class CityPickerVC: UIViewController {
     @IBAction func checkBtn(_ sender: Any) {
         if isValid == true{
             
-            // show ConfirmVC
+            if selectedForecastType == "Hourly"{
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "HourlyVC") as! HourlyVc
+                print(selectedCity)
+                vc.currentLocation=selectedCity
+                vc.currentLat = selectedlat
+                vc.currentLong = selectedLong
+                self.present(vc, animated: true, completion: nil)
+            }else{
+                print("isValid true")
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "confirmvc") as! weatherVC
+                print(selectedCity)
+                vc.currentLocation=selectedCity
+                vc.currentLat = selectedlat
+                vc.currentLong = selectedLong
+                self.present(vc, animated: true, completion: nil)
+            }
             
-//            guard let vc = storyboard?.instantiateViewController(identifier: "confirmvc") as? weatherVC else {
-//                print("Could not find confirmvc")
-//                return
-//            }
-//            print(selectedCity)
-//            vc.currentLocation=selectedCity
-//           show(vc, sender: self)
-            print("isValid true")
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "confirmvc") as! weatherVC
-            print(selectedCity)
-            vc.currentLocation=selectedCity
-            vc.currentLat = selectedlat
-            vc.currentLong = selectedLong
-            self.present(vc, animated: true, completion: nil)
+           
         }
         else{
             print("button not working")
