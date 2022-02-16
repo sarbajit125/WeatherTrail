@@ -17,10 +17,12 @@ class CityPickerVC: UIViewController {
     
     @IBOutlet weak var check: UIButton!
     let cityList = ["Bangalore", "Mumbai", "Delhi", "Hyderabad"]
+    let typeofForecast = ["Hourly","Daily" ]
     var isValid = false
     var selectedCity = ""
     var selectedlat:Double = 0.0
     var selectedLong:Double = 0.0
+    var selectedForecastType = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         cityPicker.dataSource = self
@@ -96,17 +98,28 @@ class CityPickerVC: UIViewController {
 extension CityPickerVC:UIPickerViewDataSource{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return cityList.count
+        switch component{
+        case 0:
+            return cityList.count
+        default:
+            return typeofForecast.count
+        }
+        
     }
 }
 
 extension CityPickerVC:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return cityList[row]
+        if component == 0{
+            return cityList[row]
+        }else{
+            return typeofForecast[row]
+        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -114,17 +127,24 @@ extension CityPickerVC:UIPickerViewDelegate{
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedCity = cityList[row]
-        isValid = true
-        check.isEnabled = true
-        print("Tracking Started")
-        lUtility.getGeoCoord(address: "\(selectedCity)") { (loc) in
-            self.currentL.text = "\(self.selectedCity) co-ord: \(loc.coordinate.latitude), \(loc.coordinate.longitude)"
-            self.selectedlat = loc.coordinate.latitude
-            self.selectedLong = loc.coordinate.longitude
+        if component == 0{
+            selectedCity = cityList[row]
+            isValid = true
+            check.isEnabled = true
+            print("Tracking Started")
+            lUtility.getGeoCoord(address: "\(selectedCity)") { (loc) in
+                self.currentL.text = "\(self.selectedCity) co-ord: \(loc.coordinate.latitude), \(loc.coordinate.longitude)"
+                self.selectedlat = loc.coordinate.latitude
+                self.selectedLong = loc.coordinate.longitude
+            }
+            print("Tracking Ended")
+        }else{
+            selectedForecastType = typeofForecast[row]
+            print("Selected Forecast type: \(selectedForecastType)")
         }
-        print("Tracking Ended")
-       // currentL.text="Selected City:\(selectedCity)"
+        
+        
+
     }
 }
 
