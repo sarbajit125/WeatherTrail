@@ -53,6 +53,21 @@ class weatherUtility{
         return stringDate
     }
     
-    
+    func getTeempUnit(selectedUnit:String)->[String]{
+       
+        switch selectedUnit{
+        case "metric":
+            var result:[String] = []
+            result.append("\u{00B0}C")
+            result.append("meter/sec")
+            return result
+        case "imperial":
+            let result = ["\u{00B0}F","miles/hour"]
+            return result
+        default:
+            let result = ["K","meter/sec"]
+            return result
+        }
+    }
 
 }

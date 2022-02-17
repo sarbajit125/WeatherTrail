@@ -25,6 +25,8 @@ class weatherVC: UIViewController {
     
     var Wutils = weatherUtility()
     
+    var getCurrentUnit:[String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tbl.dataSource = self
@@ -36,6 +38,7 @@ class weatherVC: UIViewController {
         }
         print("currentLat:\(currentLat)")
         print("currentLong:\(currentLong)")
+        getCurrentUnit = Wutils.getTeempUnit(selectedUnit: currentUnit)
         // Do any additional setup after loading the view.
     }
     
@@ -118,8 +121,8 @@ extension weatherVC:UITableViewDataSource{
         }
         forecastL.text = "\(std.weather[0].main)"
         cell.dayL.text = "\(days)"
-        cell.maxT.text = "\(std.temp.max) \u{00B0}C"
-        cell.minT.text = "\(std.temp.min) \u{00B0}C"
+        cell.maxT.text = "\(std.temp.max) \(getCurrentUnit[0])"
+        cell.minT.text = "\(std.temp.min) \(getCurrentUnit[0])"
         
         
         return cell
@@ -144,7 +147,7 @@ extension weatherVC:UITableViewDelegate{
         let windDegree = std.wind_deg
         windDir.image = Wutils.getWindArrow(dir: windDegree)
         print("Day:\(std.dt) Temp:\(std.temp.max)")
-        temperatureL.text="\(std.temp.max)\u{00B0}C"
+        temperatureL.text="\(std.temp.max)\(getCurrentUnit[0])"
     }
 }
 

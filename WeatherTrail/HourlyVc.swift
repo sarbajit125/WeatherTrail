@@ -22,6 +22,8 @@ class HourlyVc: UIViewController {
     var currentUnit = ""
     var LocalDate = weatherUtility()
     
+    var getCurrentUnit:[String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tbl.dataSource = self
@@ -33,6 +35,7 @@ class HourlyVc: UIViewController {
         }
         print("currentLat:\(currentLat)")
         print("currentLong:\(currentLong)")
+        getCurrentUnit = LocalDate.getTeempUnit(selectedUnit: currentUnit)
         
         
         
@@ -72,11 +75,11 @@ extension HourlyVc:UITableViewDataSource{
             cell.conditionsL.image = UIImage(data: imgData)
         }
         
-        tempL.text = "\(std.temp) \u{00B0}C"
-        cell.tempCellL.text="\(std.temp) \u{00B0}C"
+        tempL.text = "\(std.temp) \(getCurrentUnit[0])"
+        cell.tempCellL.text="\(std.temp) \(getCurrentUnit[0])"
         cell.hourL.text = "\(days)"
         cell.humidityL.text = "Humidity:\(std.humidity)%"
-        cell.feelLikeL.text = "Feels like \(std.feels_like)"
+        cell.feelLikeL.text = "Feels like \(std.feels_like)\(getCurrentUnit[0])"
         
         return cell
     }
@@ -89,7 +92,7 @@ extension HourlyVc:UITableViewDelegate{
         let std = hourlyList[indexPath.row]
         let windDegree = std.wind_deg
         windDir.image = LocalDate.getWindArrow(dir: windDegree)
-        print("Day:\(std.dt) Temp:\(std.feels_like )")
-        tempL.text="\(std.temp)\u{00B0}C"
+        print("Day:\(std.dt) Temp:\(std.feels_like )\(getCurrentUnit[0])")
+        tempL.text="\(std.temp)\(getCurrentUnit[0])"
     }
 }

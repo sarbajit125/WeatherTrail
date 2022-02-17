@@ -164,13 +164,18 @@ extension CityPickerVC:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0{
             selectedCity = cityList[row]
-            isValid = true
-            check.isEnabled = true
             print("Tracking Started")
-            lUtility.getGeoCoord(address: "\(selectedCity)") { (loc) in
-                self.currentL.text = "\(self.selectedCity) co-ord: \(loc.coordinate.latitude), \(loc.coordinate.longitude)"
-                self.selectedlat = loc.coordinate.latitude
-                self.selectedLong = loc.coordinate.longitude
+            lUtility.getGeoCoordOptional(address: "\(selectedCity)") { (locations) in
+                if let loc = locations{
+                    self.isValid = true
+                    self.check.isEnabled = true
+                    self.currentL.text = "\(self.selectedCity) co-ord: \(loc.coordinate.latitude), \(loc.coordinate.longitude)"
+                    self.selectedlat = loc.coordinate.latitude
+                    self.selectedLong = loc.coordinate.longitude
+                }else{
+                    print("Error in getting location GeoCo-ordinates")
+                }
+                
             }
             print("Tracking Ended")
         }else{
@@ -190,13 +195,18 @@ extension CityPickerVC:UITextFieldDelegate{
         case cityText:
             let input = textField.text ?? ""
             print(" textfiled Tracking Started")
-            lUtility.getGeoCoord(address: "\(input)") { (loc) in
-                self.currentL.text = "\(input) co-ord: \(loc.coordinate.latitude), \(loc.coordinate.longitude)"
-                self.selectedlat = loc.coordinate.latitude
-                self.selectedLong = loc.coordinate.longitude
+            lUtility.getGeoCoordOptional(address: "\(input)") { (locations) in
+                if let loc = locations{
+                    self.currentL.text = "\(input) co-ord: \(loc.coordinate.latitude), \(loc.coordinate.longitude)"
+                    self.selectedlat = loc.coordinate.latitude
+                    self.selectedLong = loc.coordinate.longitude
+                    self.isValid = true
+                    self.check.isEnabled = true
+                }else{
+                    self.currentL.text = "Unable to get Co-ordinates of location"
+                }
+                
             }
-            isValid = true
-            check.isEnabled = true
             print("textfiled Tracking Ended")
                     
         default:
