@@ -72,7 +72,8 @@ class CityPickerVC: UIViewController {
                 vc.currentLat = selectedlat
                 vc.currentLong = selectedLong
                 vc.currentUnit = selectedUnit
-                self.present(vc, animated: true, completion: nil)
+                //self.show(vc, animated: true, completion: nil)
+                self.show(vc, sender: nil)
             }else{
                 print("isValid true")
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "confirmvc") as! weatherVC
@@ -81,7 +82,8 @@ class CityPickerVC: UIViewController {
                 vc.currentLat = selectedlat
                 vc.currentLong = selectedLong
                 vc.currentUnit = selectedUnit
-                self.present(vc, animated: true, completion: nil)
+                //self.show(vc, animated: true, completion: nil)
+                self.show(vc, sender: nil)
             }
             
            

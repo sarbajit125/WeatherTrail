@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="olV-1r-SjK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WeatherTrail" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="FcN-B7-L1r" kind="presentation" id="FNT-Ll-SC7"/>
+                                    <segue destination="FcN-B7-L1r" kind="show" id="FNT-Ll-SC7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -52,7 +52,7 @@
                             <constraint firstItem="RTz-AT-sdb" firstAttribute="leading" secondItem="dXf-c3-EEB" secondAttribute="leading" id="sMc-Nh-Uhh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Nqg-9w-dwZ"/>
+                    <navigationItem key="navigationItem" title="Home" id="Nqg-9w-dwZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -220,26 +220,26 @@
             </objects>
             <point key="canvasLocation" x="1717.3913043478262" y="772.76785714285711"/>
         </scene>
-        <!--City PickerVC-->
+        <!--Settings-->
         <scene sceneID="0Ba-iS-sSA">
             <objects>
                 <viewController id="FcN-B7-L1r" customClass="CityPickerVC" customModule="WeatherTrail" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Bv-K0-bqe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBM-41-0qo">
-                                <rect key="frame" x="0.0" y="138" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="226" width="414" height="216"/>
                                 <color key="tintColor" systemColor="linkColor"/>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7hs-sg-UE1">
-                                <rect key="frame" x="70" y="399" width="274" height="34"/>
+                                <rect key="frame" x="70" y="487" width="274" height="34"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-32-jl2">
-                                <rect key="frame" x="62" y="86" width="269" height="40"/>
+                                <rect key="frame" x="62" y="174" width="269" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <menu key="menu" id="oxI-Wf-gp1">
                                     <children>
@@ -255,7 +255,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGv-ot-hxf">
-                                <rect key="frame" x="83" y="668" width="248" height="55"/>
+                                <rect key="frame" x="83" y="756" width="248" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="9fX-bL-Tbn"/>
                                 </constraints>
@@ -269,7 +269,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SelectedLocation" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVd-aK-zdQ">
-                                <rect key="frame" x="83" y="571" width="248" height="44"/>
+                                <rect key="frame" x="83" y="659" width="248" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="KPr-Ng-atq"/>
                                 </constraints>
@@ -278,7 +278,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyo-CD-Lcj">
-                                <rect key="frame" x="83" y="491" width="248" height="39"/>
+                                <rect key="frame" x="83" y="579" width="248" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="qoR-HF-mYg"/>
                                 </constraints>
@@ -314,6 +314,7 @@
                             <constraint firstItem="iyo-CD-Lcj" firstAttribute="top" secondItem="7hs-sg-UE1" secondAttribute="bottom" constant="58" id="ze9-32-63P"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Settings" id="Gk7-eP-Wcm"/>
                     <connections>
                         <outlet property="check" destination="tGv-ot-hxf" id="wCY-3m-RVe"/>
                         <outlet property="cityPicker" destination="UBM-41-0qo" id="EBk-Wg-fmS"/>
