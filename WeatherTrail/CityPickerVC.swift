@@ -15,6 +15,8 @@ class CityPickerVC: UIViewController {
     @IBOutlet weak var currentL: UILabel!
     @IBOutlet weak var cityPicker: UIPickerView!
     
+    
+    @IBOutlet weak var showMenuButton: UIButton!
     @IBOutlet weak var check: UIButton!
     let cityList = ["Bangalore", "Mumbai", "Delhi", "Hyderabad"]
     let typeofForecast = ["Daily","Hourly"]
@@ -23,12 +25,17 @@ class CityPickerVC: UIViewController {
     var selectedlat:Double = 0.0
     var selectedLong:Double = 0.0
     var selectedForecastType = ""
+    var selectedUnit = ""
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cityPicker.dataSource = self
         cityPicker.delegate = self
         cityText.delegate = self
         check.isEnabled=false
+        configureButtonMenu()
         
         //startTracking()
         
@@ -53,8 +60,7 @@ class CityPickerVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func preferance(_ sender: Any) {
-    }
+    
     
     @IBAction func checkBtn(_ sender: Any) {
         if isValid == true{
@@ -65,6 +71,7 @@ class CityPickerVC: UIViewController {
                 vc.currentLocation=selectedCity
                 vc.currentLat = selectedlat
                 vc.currentLong = selectedLong
+                vc.currentUnit = selectedUnit
                 self.present(vc, animated: true, completion: nil)
             }else{
                 print("isValid true")
@@ -73,6 +80,7 @@ class CityPickerVC: UIViewController {
                 vc.currentLocation=selectedCity
                 vc.currentLat = selectedlat
                 vc.currentLong = selectedLong
+                vc.currentUnit = selectedUnit
                 self.present(vc, animated: true, completion: nil)
             }
             
@@ -93,7 +101,32 @@ class CityPickerVC: UIViewController {
             isValid = true
             check.isEnabled = true
         }
-     
+    func configureButtonMenu(){
+        var menuItems: [UIAction] {
+            return [
+                UIAction(title: "Celsius", image: UIImage(systemName: "sun.max"), handler: { (unit) in
+                    self.selectedUnit = "metric"
+                    print("Choosen Unit is \(self.selectedUnit)")
+                }),
+                UIAction(title: "Fahrenheit", image: UIImage(systemName: "moon"), handler: { (_) in
+                    self.selectedUnit = "imperial"
+                    print("Choosen Unit is \(self.selectedUnit)")
+                }),
+                UIAction(title: "Kelvin", image: UIImage(systemName: "trash"), handler: { (_) in
+                    self.selectedUnit = "standard"
+                    print("Choosen Unit is \(self.selectedUnit)")
+                })
+            ]
+        }
+
+        var demoMenu: UIMenu {
+            return UIMenu(title: "My menu", image: nil, identifier: nil, options: [], children: menuItems)
+        }
+        
+        showMenuButton.menu = demoMenu
+            showMenuButton.showsMenuAsPrimaryAction = true
+
+    }
     
 }
 

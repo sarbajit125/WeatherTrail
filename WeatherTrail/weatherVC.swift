@@ -21,6 +21,7 @@ class weatherVC: UIViewController {
     var currentLocation=""
     var currentLat:Double = 0.0
     var currentLong:Double = 0.0
+    var currentUnit = ""
     
     var Wutils = weatherUtility()
     
@@ -29,10 +30,10 @@ class weatherVC: UIViewController {
         tbl.dataSource = self
         tbl.delegate = self
         currentL.text = "Location: \(currentLocation)"
-        AFUtility.instance.getPopularMovies(Lat: currentLat, Long: currentLong, completion: { data in
+        AFUtility.instance.getDailyData(Lat: currentLat, Long: currentLong, unit: currentUnit) { data in
             self.weatherList = data.daily
             self.tbl.reloadData()
-        }) 
+        }
         print("currentLat:\(currentLat)")
         print("currentLong:\(currentLong)")
         // Do any additional setup after loading the view.
@@ -131,11 +132,11 @@ extension weatherVC:UITableViewDelegate{
 //        print("Day:\(std.day) Temp:\(std.maxT)")
 //        temperatureL.text="\(std.maxT)\u{00B0}C"
 //    }
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let dayName = UILabel()
-//        dayName.text="Days"
-//        return dayName
-//    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let dayName = UILabel()
+        dayName.text="Days"
+        return dayName
+    }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let std = weatherList[indexPath.row]

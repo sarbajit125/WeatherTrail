@@ -13,8 +13,8 @@ class AFUtility{
     private init(){}
     
     static var instance  = AFUtility()
-    func getPopularMovies(Lat:Double,Long:Double,completion: @escaping(DailyForecast)->Void){
-        let openURL = "https://api.openweathermap.org/data/2.5/onecall?lat=\(Lat)&lon=\(Long)&exclude=minutely,alerts,hourly&units=metric&appid=\(apikey)"
+    func getDailyData(Lat:Double,Long:Double,unit:String,completion: @escaping(DailyForecast)->Void){
+        let openURL = "https://api.openweathermap.org/data/2.5/onecall?lat=\(Lat)&lon=\(Long)&exclude=minutely,alerts,hourly&units=\(unit)&appid=\(apikey)"
         print("URL:\(openURL)")
         guard let url = URL(string: openURL)else{
             print("Failed to get URL")
@@ -57,8 +57,8 @@ class AFUtility{
     }
     
     
-    func getHourlyData(Lat:Double,Long:Double,completion: @escaping(HourlyForecast)->Void){
-        let openURL = "https://api.openweathermap.org/data/2.5/onecall?lat=\(Lat)&lon=\(Long)&exclude=minutely,alerts,daily&units=metric&appid=\(apikey)"
+    func getHourlyData(Lat:Double,Long:Double,unit:String,completion: @escaping(HourlyForecast)->Void){
+        let openURL = "https://api.openweathermap.org/data/2.5/onecall?lat=\(Lat)&lon=\(Long)&exclude=minutely,alerts,daily&units=\(unit)&appid=\(apikey)"
         print("URL:\(openURL)")
         guard let url = URL(string: openURL)else{
             print("Failed to get URL")

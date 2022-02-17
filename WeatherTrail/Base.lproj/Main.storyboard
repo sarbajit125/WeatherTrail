@@ -320,6 +320,7 @@
                         <outlet property="cityPicker" destination="UBM-41-0qo" id="EBk-Wg-fmS"/>
                         <outlet property="cityText" destination="7hs-sg-UE1" id="MNx-iq-uxj"/>
                         <outlet property="currentL" destination="NVd-aK-zdQ" id="BQw-c2-lnx"/>
+                        <outlet property="showMenuButton" destination="dg4-32-jl2" id="GRr-44-R4w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nNC-eb-B1l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

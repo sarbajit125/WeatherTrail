@@ -19,6 +19,7 @@ class HourlyVc: UIViewController {
     var currentLocation=""
     var currentLat:Double = 0.0
     var currentLong:Double = 0.0
+    var currentUnit = ""
     var LocalDate = weatherUtility()
     
     override func viewDidLoad() {
@@ -26,7 +27,7 @@ class HourlyVc: UIViewController {
         tbl.dataSource = self
         tbl.delegate = self
         currentL.text = "Location: \(currentLocation)"
-        AFUtility.instance.getHourlyData(Lat: currentLat, Long: currentLong) { data in
+        AFUtility.instance.getHourlyData(Lat: currentLat, Long: currentLong, unit: currentUnit) { data in
             self.hourlyList = data.hourly
             self.tbl.reloadData()
         }
@@ -54,7 +55,7 @@ class HourlyVc: UIViewController {
 
 extension HourlyVc:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        hourlyList.count
+        hourlyList.count-24
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,8 +75,8 @@ extension HourlyVc:UITableViewDataSource{
         tempL.text = "\(std.temp) \u{00B0}C"
         cell.tempCellL.text="\(std.temp) \u{00B0}C"
         cell.hourL.text = "\(days)"
-        cell.humidityL.text = "\(std.humidity)"
-        cell.feelLikeL.text = "\(std.feels_like)"
+        cell.humidityL.text = "Humidity:\(std.humidity)%"
+        cell.feelLikeL.text = "Feels like \(std.feels_like)"
         
         return cell
     }
