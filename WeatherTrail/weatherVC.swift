@@ -21,6 +21,9 @@ class weatherVC: UIViewController {
     var currentLocation=""
     var currentLat:Double = 0.0
     var currentLong:Double = 0.0
+    
+    var Wutils = weatherUtility()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tbl.dataSource = self
@@ -44,36 +47,15 @@ class weatherVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    func getDate(dt:Double)->String{
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MM yyyy"
-        let  stringDate = formatter.string(from: Date(timeIntervalSince1970: TimeInterval(dt)))
-        return stringDate
-    }
+//    func getDate(dt:Double)->String{
+//
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "dd MM yyyy"
+//        let  stringDate = formatter.string(from: Date(timeIntervalSince1970: TimeInterval(dt)))
+//        return stringDate
+//    }
     
-    func getWindArrow(dir:Int){
-        switch dir{
-        case let x where x == 0:
-            windDir.image=UIImage(systemName: "arrow.right")
-        case let x where x>0 && x<90:
-            windDir.image=UIImage(named: "northeast")
-        case let x where x == 90:
-            windDir.image=UIImage(systemName: "arrow.up")
-        case let x where x>90 && x<180:
-            windDir.image=UIImage(named: "northwest")
-        case let x where x == 180:
-            windDir.image=UIImage(systemName: "arrow.left")
-        case let x where x>180 && x<270:
-            windDir.image=UIImage(named: "southwest")
-        case let x where x == 270:
-            windDir.image=UIImage(systemName: "arrow.down")
-        case let x where x>270 && x<360:
-            windDir.image=UIImage(named: "southeast")
-        default:
-            print("Error...")
-        }
-    }
+    
     
     func getBackground(main:String){
         switch main{
@@ -126,8 +108,8 @@ extension weatherVC:UITableViewDataSource{
         
         getBackground(main: std.weather[0].main)
         let windDegree = std.wind_deg
-        getWindArrow(dir: windDegree)
-        let days = getDate(dt: std.dt)
+        windDir.image = Wutils.getWindArrow(dir: windDegree)
+        let days = Wutils.getDate(dt: std.dt)
         print("\(days)")
         let imgURL = "http://openweathermap.org/img/wn/\(std.weather[0].icon)@2x.png"// HTTP does not work
         AFUtility.instance.downloadImage(imgURL: imgURL) { (imgData) in
@@ -159,7 +141,7 @@ extension weatherVC:UITableViewDelegate{
         let std = weatherList[indexPath.row]
         getBackground(main: std.weather[0].main) // Background does not change according to highligted row
         let windDegree = std.wind_deg
-        getWindArrow(dir: windDegree)
+        windDir.image = Wutils.getWindArrow(dir: windDegree)
         print("Day:\(std.dt) Temp:\(std.temp.max)")
         temperatureL.text="\(std.temp.max)\u{00B0}C"
     }

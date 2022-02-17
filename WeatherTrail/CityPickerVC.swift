@@ -17,7 +17,7 @@ class CityPickerVC: UIViewController {
     
     @IBOutlet weak var check: UIButton!
     let cityList = ["Bangalore", "Mumbai", "Delhi", "Hyderabad"]
-    let typeofForecast = ["Hourly","Daily" ]
+    let typeofForecast = ["Daily","Hourly"]
     var isValid = false
     var selectedCity = ""
     var selectedlat:Double = 0.0
