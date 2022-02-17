@@ -14,6 +14,7 @@ class HourlyVc: UIViewController {
     
     @IBOutlet weak var tbl: UITableView!
     @IBOutlet weak var tempL: UILabel!
+    @IBOutlet weak var bgImg: UIImageView!
     
     var hourlyList : [HourlyResult] = []
     var currentLocation=""
@@ -28,6 +29,7 @@ class HourlyVc: UIViewController {
         super.viewDidLoad()
         tbl.dataSource = self
         tbl.delegate = self
+        tbl.backgroundColor = UIColor.clear
         currentL.text = "Location: \(currentLocation)"
         AFUtility.instance.getHourlyData(Lat: currentLat, Long: currentLong, unit: currentUnit) { data in
             self.hourlyList = data.hourly
@@ -64,8 +66,9 @@ extension HourlyVc:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "hourCell", for: indexPath) as! HourlyCell
         let std = hourlyList[indexPath.row]
+        cell.contentView.backgroundColor = UIColor.clear
         print("Weather Main:\(std.weather[0].main)")
-        
+        bgImg.image = LocalDate.getBackground(main: std.weather[0].main)
         let windDegree = std.wind_deg
         windDir.image = LocalDate.getWindArrow(dir: windDegree)
         let days = LocalDate.getTime(dt: std.dt)

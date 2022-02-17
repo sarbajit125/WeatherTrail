@@ -69,5 +69,18 @@ class weatherUtility{
             return result
         }
     }
+    
+    func getBackground(main:String)->UIImage{
+        switch main{
+        case "Clear":
+            return UIImage(named: "backgroundSunny")!
+        case "Clouds":
+            return UIImage(named: "backgroundCloudy")!
+        case "Rain":
+           return UIImage(named: "backgroundRainy")!
+        default:
+            return UIImage(named: "backgroundSunny")!
+        }
+    }
 
 }

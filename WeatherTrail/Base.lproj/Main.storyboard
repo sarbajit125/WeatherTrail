@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
@@ -88,6 +89,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backgroundCloudy" translatesAutoresizingMaskIntoConstraints="NO" id="KFB-cV-Ba9">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxj-EM-tP3">
                                 <rect key="frame" x="72" y="94" width="288" height="46"/>
                                 <constraints>
@@ -112,9 +117,10 @@
                                     <constraint firstAttribute="width" constant="84" id="DI9-fB-qAP"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nKq-Kh-lQu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nKq-Kh-lQu">
                                 <rect key="frame" x="20" y="338" width="381" height="509"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hourCell" rowHeight="175" id="L1j-hx-esn" customClass="HourlyCell" customModule="WeatherTrail" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="381" height="175"/>
@@ -180,6 +186,7 @@
                                                 <constraint firstItem="SEe-iI-glQ" firstAttribute="trailing" secondItem="Nig-5R-daF" secondAttribute="trailing" id="sqj-jv-uRe"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="conditionsL" destination="BA1-xM-zH6" id="T1x-0F-KvI"/>
                                             <outlet property="feelLikeL" destination="SEe-iI-glQ" id="DpA-2O-CBm"/>
@@ -210,6 +217,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bgImg" destination="KFB-cV-Ba9" id="YFu-aN-mNt"/>
                         <outlet property="currentL" destination="Uxj-EM-tP3" id="u0x-ct-hbE"/>
                         <outlet property="tbl" destination="nKq-Kh-lQu" id="p1z-mP-LNM"/>
                         <outlet property="tempL" destination="8OG-gR-46k" id="jWY-Rd-EDW"/>
@@ -334,6 +342,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backgroundCloudy" translatesAutoresizingMaskIntoConstraints="NO" id="az3-97-ifC">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Current Location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLC-FW-bag">
                                 <rect key="frame" x="94" y="77" width="227" height="50"/>
                                 <constraints>
@@ -352,9 +364,10 @@
                                 <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qim-GG-sq3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qim-GG-sq3">
                                 <rect key="frame" x="8" y="409" width="397" height="453"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customCell" rowHeight="163" id="wAI-qp-YSW" customClass="WeatherCell" customModule="WeatherTrail" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="397" height="163"/>
@@ -413,6 +426,7 @@
                                                 <constraint firstItem="MhQ-Y7-OXr" firstAttribute="top" secondItem="JrA-cZ-UST" secondAttribute="topMargin" constant="-6" id="psw-Ov-vY5"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dayL" destination="9aq-WP-UEj" id="taG-br-xo8"/>
                                             <outlet property="forecastImg" destination="MZG-eG-C1I" id="wkN-fN-x5Q"/>
@@ -440,7 +454,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="btv-uv-0Nn"/>
-                        <color key="backgroundColor" systemColor="linkColor"/>
+                        <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
                             <constraint firstItem="Qim-GG-sq3" firstAttribute="bottom" secondItem="btv-uv-0Nn" secondAttribute="bottom" id="9CC-j8-MVn"/>
                             <constraint firstItem="tLC-FW-bag" firstAttribute="centerX" secondItem="68u-px-lHU" secondAttribute="centerX" constant="-46.5" id="FFS-Do-cow"/>
@@ -462,6 +476,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="QaD-IW-f5X"/>
                     <connections>
+                        <outlet property="bgImg" destination="az3-97-ifC" id="tU0-kh-gbb"/>
                         <outlet property="currentL" destination="tLC-FW-bag" id="f8M-de-1o6"/>
                         <outlet property="forecastL" destination="68u-px-lHU" id="eBF-MV-fB0"/>
                         <outlet property="tbl" destination="Qim-GG-sq3" id="366-4b-brX"/>
@@ -494,6 +509,10 @@
     </scenes>
     <resources>
         <image name="arrow.down.square" catalog="system" width="128" height="114"/>
+        <image name="backgroundCloudy" width="650" height="1153"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -15,6 +15,7 @@ class weatherVC: UIViewController {
     @IBOutlet weak var tbl: UITableView!
     @IBOutlet weak var temperatureL: UILabel!
     @IBOutlet weak var forecastL: UILabel!
+    @IBOutlet weak var bgImg: UIImageView!
     
     @IBOutlet weak var windDir: UIImageView!
     var weatherList : [DailyResult] = []
@@ -31,6 +32,7 @@ class weatherVC: UIViewController {
         super.viewDidLoad()
         tbl.dataSource = self
         tbl.delegate = self
+        tbl.backgroundColor = UIColor.clear
         currentL.text = "Location: \(currentLocation)"
         AFUtility.instance.getDailyData(Lat: currentLat, Long: currentLong, unit: currentUnit) { data in
             self.weatherList = data.daily
@@ -59,32 +61,7 @@ class weatherVC: UIViewController {
 //        return stringDate
 //    }
     
-    
-    
-    func getBackground(main:String){
-        switch main{
-        case "Clear":
-            let bg = UIImageView(frame: UIScreen.main.bounds)
-            bg.image = UIImage(named: "backgroundSunny")
-            bg.contentMode = UIView.ContentMode.scaleAspectFit
-            self.view.insertSubview(bg, at: 0)
-        case "Clouds":
-            let bg = UIImageView(frame: UIScreen.main.bounds)
-            bg.image = UIImage(named: "backgroundCloudy")
-            bg.contentMode = UIView.ContentMode.scaleAspectFit
-            self.view.insertSubview(bg, at: 0)
-        case "Rain":
-            let bg = UIImageView(frame: UIScreen.main.bounds)
-            bg.image = UIImage(named: "backgroundRainy")
-            bg.contentMode = UIView.ContentMode.scaleAspectFit
-            self.view.insertSubview(bg, at: 0)
-        default:
-            let bg = UIImageView(frame: UIScreen.main.bounds)
-            bg.image = UIImage(named: "backgroundSunny")
-            bg.contentMode = UIView.ContentMode.scaleAspectFit
-            self.view.insertSubview(bg, at: 0)
-        }
-    }
+   
 
 }
 
@@ -96,21 +73,10 @@ extension weatherVC:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! WeatherCell
         let std = weatherList[indexPath.row]
-        cell.contentView.backgroundColor = .darkGray
+        cell.contentView.backgroundColor = UIColor.clear
 
         print("Weather Main:\(std.weather[0].main)")
-//        switch std.weather[0].main{
-//        case "clear":
-//            cell.forecastImg.image=UIImage(named: "sunny")
-//        case "clouds":
-//            cell.forecastImg.image=UIImage(named: "cloudy")
-//        case "rain":
-//            cell.forecastImg.image=UIImage(named: "rainy")
-//        default:
-//            cell.forecastImg.image=UIImage(named: "sunny")
-//        }
-        
-        getBackground(main: std.weather[0].main)
+        bgImg.image = Wutils.getBackground(main: std.weather[0].main)
         let windDegree = std.wind_deg
         windDir.image = Wutils.getWindArrow(dir: windDegree)
         let days = Wutils.getDate(dt: std.dt)
@@ -135,15 +101,14 @@ extension weatherVC:UITableViewDelegate{
 //        print("Day:\(std.day) Temp:\(std.maxT)")
 //        temperatureL.text="\(std.maxT)\u{00B0}C"
 //    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let dayName = UILabel()
-        dayName.text="Days"
-        return dayName
-    }
-    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let dayName = UILabel()
+//        dayName.text="Days"
+//        return dayName
+//    }
+//
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let std = weatherList[indexPath.row]
-        getBackground(main: std.weather[0].main) // Background does not change according to highligted row
         let windDegree = std.wind_deg
         windDir.image = Wutils.getWindArrow(dir: windDegree)
         print("Day:\(std.dt) Temp:\(std.temp.max)")
