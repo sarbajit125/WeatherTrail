@@ -131,11 +131,11 @@ extension weatherVC:UITableViewDelegate{
 //        print("Day:\(std.day) Temp:\(std.maxT)")
 //        temperatureL.text="\(std.maxT)\u{00B0}C"
 //    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let dayName = UILabel()
-        dayName.text="Days"
-        return dayName
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let dayName = UILabel()
+//        dayName.text="Days"
+//        return dayName
+//    }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let std = weatherList[indexPath.row]
