@@ -18,6 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDe-cG-kHP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MerryWeather App" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXf-c3-EEB">
                                 <rect key="frame" x="97" y="438" width="220" height="60"/>
                                 <constraints>
@@ -54,6 +58,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="Nqg-9w-dwZ"/>
+                    <connections>
+                        <outlet property="welcomebg" destination="MDe-cG-kHP" id="5QI-X6-5tL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -236,6 +243,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eUc-dr-Gzc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBM-41-0qo">
                                 <rect key="frame" x="0.0" y="226" width="414" height="216"/>
                                 <color key="tintColor" systemColor="linkColor"/>
@@ -324,6 +335,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Gk7-eP-Wcm"/>
                     <connections>
+                        <outlet property="PickerBg" destination="eUc-dr-Gzc" id="fjy-o3-VWM"/>
                         <outlet property="check" destination="tGv-ot-hxf" id="wCY-3m-RVe"/>
                         <outlet property="cityPicker" destination="UBM-41-0qo" id="EBk-Wg-fmS"/>
                         <outlet property="cityText" destination="7hs-sg-UE1" id="MNx-iq-uxj"/>

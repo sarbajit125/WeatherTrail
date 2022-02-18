@@ -82,5 +82,12 @@ class weatherUtility{
             return UIImage(named: "backgroundSunny")!
         }
     }
+    func getDay(dt:Double)->String{
+        let date = Date(timeIntervalSince1970: dt)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let dayInweek = dateFormatter.string(from: date)
+        return dayInweek
+    }
 
 }

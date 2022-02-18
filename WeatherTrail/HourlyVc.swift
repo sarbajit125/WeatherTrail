@@ -60,7 +60,7 @@ class HourlyVc: UIViewController {
 
 extension HourlyVc:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        hourlyList.count-24
+       return (hourlyList.count-24)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

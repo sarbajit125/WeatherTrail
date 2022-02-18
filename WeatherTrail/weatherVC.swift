@@ -79,7 +79,8 @@ extension weatherVC:UITableViewDataSource{
         bgImg.image = Wutils.getBackground(main: std.weather[0].main)
         let windDegree = std.wind_deg
         windDir.image = Wutils.getWindArrow(dir: windDegree)
-        let days = Wutils.getDate(dt: std.dt)
+        //let days = Wutils.getDate(dt: std.dt)
+        let days = Wutils.getDay(dt: std.dt)
         print("\(days)")
         let imgURL = "http://openweathermap.org/img/wn/\(std.weather[0].icon)@2x.png"// HTTP does not work
         AFUtility.instance.downloadImage(imgURL: imgURL) { (imgData) in
@@ -89,7 +90,7 @@ extension weatherVC:UITableViewDataSource{
         cell.dayL.text = "\(days)"
         cell.maxT.text = "\(std.temp.max) \(getCurrentUnit[0])"
         cell.minT.text = "\(std.temp.min) \(getCurrentUnit[0])"
-        
+        temperatureL.text="\(std.temp.max)\(getCurrentUnit[0])"
         
         return cell
     }
@@ -114,8 +115,4 @@ extension weatherVC:UITableViewDelegate{
         print("Day:\(std.dt) Temp:\(std.temp.max)")
         temperatureL.text="\(std.temp.max)\(getCurrentUnit[0])"
     }
-}
-
-extension LosslessStringConvertible{
-    var string : String{.init(self)}
 }
