@@ -16,9 +16,9 @@ class weatherVC: UIViewController {
     @IBOutlet weak var temperatureL: UILabel!
     @IBOutlet weak var forecastL: UILabel!
     @IBOutlet weak var bgImg: UIImageView!
-    
     @IBOutlet weak var windDir: UIImageView!
-    var weatherList : [DailyResult] = []
+    
+    let forecastVM = ForecastWeatherViewModel()
     var currentLocation=""
     var currentLat:Double = 0.0
     var currentLong:Double = 0.0
@@ -34,8 +34,7 @@ class weatherVC: UIViewController {
         tbl.delegate = self
         tbl.backgroundColor = UIColor.clear
         currentL.text = "Location: \(currentLocation)"
-        AFUtility.instance.getDailyData(Lat: currentLat, Long: currentLong, unit: currentUnit) { data in
-            self.weatherList = data.daily
+        forecastVM.sevenDayForecast(Lat: currentLat, Long: currentLong, unit: currentUnit) {
             self.tbl.reloadData()
         }
         print("currentLat:\(currentLat)")
@@ -53,26 +52,19 @@ class weatherVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-//    func getDate(dt:Double)->String{
-//
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "dd MM yyyy"
-//        let  stringDate = formatter.string(from: Date(timeIntervalSince1970: TimeInterval(dt)))
-//        return stringDate
-//    }
-    
-   
 
 }
+// MARK: - Table DataSource
+
 
 extension weatherVC:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherList.count
+        return forecastVM.weatherList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! WeatherCell
-        let std = weatherList[indexPath.row]
+        let std = forecastVM.weatherList[indexPath.row] //weatherList[indexPath.row]
         cell.contentView.backgroundColor = UIColor.clear
 
         print("Weather Main:\(std.weather[0].main)")
@@ -96,6 +88,9 @@ extension weatherVC:UITableViewDataSource{
     }
 }
 
+// MARK: - Table DataDelegate
+
+
 extension weatherVC:UITableViewDelegate{
 //    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
 //        let std = weatherList[indexPath.row]
@@ -109,7 +104,8 @@ extension weatherVC:UITableViewDelegate{
 //    }
 //
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        let std = weatherList[indexPath.row]
+        //let std = weatherList[indexPath.row]
+        let std = forecastVM.weatherList[indexPath.row]
         let windDegree = std.wind_deg
         windDir.image = Wutils.getWindArrow(dir: windDegree)
         print("Day:\(std.dt) Temp:\(std.temp.max)")
