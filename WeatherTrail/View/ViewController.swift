@@ -9,12 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var welcomebg: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let bg = UIImageView(frame: UIScreen.main.bounds)
-        bg.image = UIImage(named: "background1")
-        bg.contentMode = UIView.ContentMode.scaleAspectFit
-        self.view.insertSubview(bg, at: 0)
+        welcomebg.image = UIImage(named: "background1")
         // Do any additional setup after loading the view.
     }
 

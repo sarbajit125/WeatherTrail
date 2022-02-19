@@ -15,6 +15,7 @@ class CityPickerVC: UIViewController {
     @IBOutlet weak var currentL: UILabel!
     @IBOutlet weak var cityPicker: UIPickerView!
     
+    @IBOutlet weak var PickerBg: UIImageView!
     
     @IBOutlet weak var showMenuButton: UIButton!
     @IBOutlet weak var check: UIButton!

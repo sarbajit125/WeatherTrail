@@ -138,7 +138,7 @@ class LocationUtility : NSObject, CLLocationManagerDelegate {
         case .authorizedWhenInUse:
             isPermissionGranted = true
             print("Granted")
-            startTracking()
+            let _ = startTracking()
         default:
             isPermissionGranted = false
             print("Unknown auth")

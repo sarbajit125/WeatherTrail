@@ -69,5 +69,25 @@ class weatherUtility{
             return result
         }
     }
+    
+    func getBackground(main:String)->UIImage{
+        switch main{
+        case "Clear":
+            return UIImage(named: "backgroundSunny")!
+        case "Clouds":
+            return UIImage(named: "backgroundCloudy")!
+        case "Rain":
+           return UIImage(named: "backgroundRainy")!
+        default:
+            return UIImage(named: "backgroundSunny")!
+        }
+    }
+    func getDay(dt:Double)->String{
+        let date = Date(timeIntervalSince1970: dt)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let dayInweek = dateFormatter.string(from: date)
+        return dayInweek
+    }
 
 }
