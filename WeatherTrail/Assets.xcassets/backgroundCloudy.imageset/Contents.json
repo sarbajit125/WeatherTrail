@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "backgroundCloudy.jpeg",
+      "filename" : "luka-vovk-6svIKY_ML9g-unsplash.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "cloudy.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
