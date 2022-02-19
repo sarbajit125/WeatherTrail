@@ -74,7 +74,7 @@ extension weatherVC:UITableViewDataSource{
         //let days = Wutils.getDate(dt: std.dt)
         let days = Wutils.getDay(dt: std.dt)
         print("\(days)")
-        let imgURL = "http://openweathermap.org/img/wn/\(std.weather[0].icon)@2x.png"// HTTP does not work
+        let imgURL = "http://openweathermap.org/img/wn/\(std.weather[0].icon)@2x.png"// HTTP does not work need change info.plist to make it work
         AFUtility.instance.downloadImage(imgURL: imgURL) { (imgData) in
             cell.forecastImg.image = UIImage(data: imgData)
         }

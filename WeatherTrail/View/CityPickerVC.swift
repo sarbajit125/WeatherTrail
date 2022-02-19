@@ -36,6 +36,7 @@ class CityPickerVC: UIViewController {
         cityPicker.delegate = self
         cityText.delegate = self
         check.isEnabled=false
+        //PickerBg.image = UIImage(named: "backgroundCity")
         configureButtonMenu()
         
         //startTracking()
@@ -99,6 +100,7 @@ class CityPickerVC: UIViewController {
             lUtility.getCurrentAddress { (addr) in
                 // Find the location from current co-ordinates
                 self.currentL.text = "Current Address: \(addr)"
+                self.selectedCity = "\(addr)"
                 print("Tracking ended")
             }
             isValid = true
@@ -131,33 +133,38 @@ class CityPickerVC: UIViewController {
 
     }
     
+    
+    @IBAction func checkTypeOfForecast(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            selectedForecastType = typeofForecast[0]
+            print("Type of forecast: \(selectedForecastType)")
+        case 1:
+            selectedForecastType = typeofForecast[1]
+            print("Type of forecast: \(selectedForecastType)")
+        default:
+            selectedForecastType = typeofForecast[0]
+            print("Type of forecast: \(selectedForecastType)")
+        }
+    }
+    
 }
 
 extension CityPickerVC:UIPickerViewDataSource{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component{
-        case 0:
-            return cityList.count
-        default:
-            return typeofForecast.count
-        }
-        
+        return cityList.count
+    
     }
 }
 
 extension CityPickerVC:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0{
             return cityList[row]
-        }else{
-            return typeofForecast[row]
-        }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -165,7 +172,6 @@ extension CityPickerVC:UIPickerViewDelegate{
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0{
             selectedCity = cityList[row]
             print("Tracking Started")
             lUtility.getGeoCoordOptional(address: "\(selectedCity)") { (locations) in
@@ -181,12 +187,6 @@ extension CityPickerVC:UIPickerViewDelegate{
                 
             }
             print("Tracking Ended")
-        }else{
-            selectedForecastType = typeofForecast[row]
-            print("Selected Forecast type: \(selectedForecastType)")
-        }
-        
-        
 
     }
 }
