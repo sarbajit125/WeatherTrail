@@ -297,28 +297,12 @@
                                 <rect key="frame" x="0.0" y="226.5" width="414" height="216"/>
                                 <color key="tintColor" systemColor="linkColor"/>
                             </pickerView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7hs-sg-UE1">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7hs-sg-UE1">
                                 <rect key="frame" x="70" y="487.5" width="274" height="34"/>
-                                <color key="textColor" systemColor="systemGreenColor"/>
+                                <color key="textColor" systemColor="tintColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-32-jl2">
-                                <rect key="frame" x="62" y="174" width="269" height="40.5"/>
-                                <menu key="menu" id="oxI-Wf-gp1">
-                                    <children>
-                                        <command title="Item 1" id="a4o-JD-fIm"/>
-                                        <command title="Item 2" id="RXo-ND-CCh"/>
-                                    </children>
-                                </menu>
-                                <state key="normal" title="Select Temperature Unit"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Select Temperature Unit">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="preferance:" destination="FcN-B7-L1r" eventType="touchUpInside" id="qUX-1O-8YB"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGv-ot-hxf">
                                 <rect key="frame" x="83" y="756.5" width="248" height="55"/>
                                 <constraints>
@@ -339,7 +323,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="KPr-Ng-atq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyo-CD-Lcj">
@@ -350,6 +334,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Current location">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                    <color key="baseForegroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="findLocation:" destination="FcN-B7-L1r" eventType="touchUpInside" id="Pwf-db-GXC"/>
@@ -368,7 +353,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CYF-Q3-3qK">
-                                <rect key="frame" x="83" y="128" width="248" height="32"/>
+                                <rect key="frame" x="83" y="94" width="248" height="32"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
                                     <segment title="Daily"/>
@@ -378,6 +363,22 @@
                                     <action selector="checkTypeOfForecast:" destination="FcN-B7-L1r" eventType="valueChanged" id="umZ-QX-HW5"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg4-32-jl2">
+                                <rect key="frame" x="73" y="162" width="269" height="40.5"/>
+                                <menu key="menu" id="oxI-Wf-gp1">
+                                    <children>
+                                        <command title="Item 1" id="a4o-JD-fIm"/>
+                                        <command title="Item 2" id="RXo-ND-CCh"/>
+                                    </children>
+                                </menu>
+                                <state key="normal" title="Select Temperature Unit"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Select Temperature Unit">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="preferance:" destination="FcN-B7-L1r" eventType="touchUpInside" id="qUX-1O-8YB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ekk-cD-CBV"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -390,25 +391,25 @@
                             <constraint firstItem="iyo-CD-Lcj" firstAttribute="trailing" secondItem="NVd-aK-zdQ" secondAttribute="trailing" id="Cc1-0h-lG5"/>
                             <constraint firstItem="iyo-CD-Lcj" firstAttribute="top" secondItem="MOc-Y2-dhG" secondAttribute="bottom" constant="25" id="EpK-Rg-OXc"/>
                             <constraint firstItem="UBM-41-0qo" firstAttribute="leading" secondItem="Ekk-cD-CBV" secondAttribute="leading" id="Gbz-jL-y4E"/>
-                            <constraint firstItem="dg4-32-jl2" firstAttribute="top" secondItem="CYF-Q3-3qK" secondAttribute="bottom" constant="15" id="HVu-dW-SFG"/>
+                            <constraint firstItem="dg4-32-jl2" firstAttribute="top" secondItem="CYF-Q3-3qK" secondAttribute="bottom" constant="37" id="HVu-dW-SFG"/>
                             <constraint firstItem="tGv-ot-hxf" firstAttribute="top" secondItem="NVd-aK-zdQ" secondAttribute="bottom" constant="53" id="IeF-a9-6iI"/>
                             <constraint firstItem="iyo-CD-Lcj" firstAttribute="leading" secondItem="Ekk-cD-CBV" secondAttribute="leading" constant="83" id="JO2-PV-Hoa"/>
                             <constraint firstItem="Ekk-cD-CBV" firstAttribute="trailing" secondItem="CYF-Q3-3qK" secondAttribute="trailing" constant="83" id="LwY-PH-cT8"/>
                             <constraint firstItem="iyo-CD-Lcj" firstAttribute="leading" secondItem="NVd-aK-zdQ" secondAttribute="leading" id="M3d-c0-IDb"/>
                             <constraint firstItem="MOc-Y2-dhG" firstAttribute="top" secondItem="7hs-sg-UE1" secondAttribute="bottom" constant="10" id="N2D-1s-h8f"/>
                             <constraint firstItem="NMj-sS-XbM" firstAttribute="top" secondItem="UBM-41-0qo" secondAttribute="bottom" constant="10" id="PIC-1R-KJV"/>
-                            <constraint firstItem="UBM-41-0qo" firstAttribute="top" secondItem="dg4-32-jl2" secondAttribute="bottom" constant="12" id="PQb-rR-9kg"/>
+                            <constraint firstItem="UBM-41-0qo" firstAttribute="top" secondItem="dg4-32-jl2" secondAttribute="bottom" constant="24" id="PQb-rR-9kg"/>
                             <constraint firstItem="UBM-41-0qo" firstAttribute="centerX" secondItem="3Bv-K0-bqe" secondAttribute="centerX" id="Xi8-yp-D1F"/>
                             <constraint firstItem="Ekk-cD-CBV" firstAttribute="trailing" secondItem="NMj-sS-XbM" secondAttribute="trailing" constant="60" id="YSe-9I-REx"/>
-                            <constraint firstItem="dg4-32-jl2" firstAttribute="trailing" secondItem="iyo-CD-Lcj" secondAttribute="trailing" id="Yaw-uy-HEl"/>
+                            <constraint firstItem="dg4-32-jl2" firstAttribute="trailing" secondItem="iyo-CD-Lcj" secondAttribute="trailing" constant="11" id="Yaw-uy-HEl"/>
                             <constraint firstItem="7hs-sg-UE1" firstAttribute="centerX" secondItem="iyo-CD-Lcj" secondAttribute="centerX" id="ZeA-jt-CAi"/>
-                            <constraint firstItem="dg4-32-jl2" firstAttribute="top" secondItem="Ekk-cD-CBV" secondAttribute="top" constant="86" id="ZfW-cB-Zgc"/>
+                            <constraint firstItem="dg4-32-jl2" firstAttribute="top" secondItem="Ekk-cD-CBV" secondAttribute="top" constant="74" id="ZfW-cB-Zgc"/>
                             <constraint firstItem="MOc-Y2-dhG" firstAttribute="leading" secondItem="Ekk-cD-CBV" secondAttribute="leading" constant="60" id="Zfv-m3-uDC"/>
                             <constraint firstItem="7hs-sg-UE1" firstAttribute="top" secondItem="NMj-sS-XbM" secondAttribute="bottom" constant="8" symbolic="YES" id="cjz-q6-3Jx"/>
                             <constraint firstItem="7hs-sg-UE1" firstAttribute="top" secondItem="UBM-41-0qo" secondAttribute="bottom" constant="45" id="fjX-ce-RNx"/>
                             <constraint firstItem="NVd-aK-zdQ" firstAttribute="top" secondItem="iyo-CD-Lcj" secondAttribute="bottom" constant="41" id="ioT-pa-Gjt"/>
                             <constraint firstItem="NMj-sS-XbM" firstAttribute="leading" secondItem="Ekk-cD-CBV" secondAttribute="leading" constant="60" id="orE-wm-g3N"/>
-                            <constraint firstItem="dg4-32-jl2" firstAttribute="leading" secondItem="Ekk-cD-CBV" secondAttribute="leading" constant="62" id="qvC-PV-KUz"/>
+                            <constraint firstItem="dg4-32-jl2" firstAttribute="leading" secondItem="Ekk-cD-CBV" secondAttribute="leading" constant="73" id="qvC-PV-KUz"/>
                             <constraint firstItem="7hs-sg-UE1" firstAttribute="leading" secondItem="Ekk-cD-CBV" secondAttribute="leading" constant="70" id="xbL-dC-I8t"/>
                             <constraint firstItem="iyo-CD-Lcj" firstAttribute="top" secondItem="7hs-sg-UE1" secondAttribute="bottom" constant="58" id="ze9-32-63P"/>
                         </constraints>
@@ -606,14 +607,17 @@
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

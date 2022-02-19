@@ -38,6 +38,8 @@ class CityPickerVC: UIViewController {
         check.isEnabled=false
         PickerBg.image = UIImage(named: "second")
         configureButtonMenu()
+        navigationItem.title = "Settings"
+        setNavigation()
         
         //startTracking()
         
@@ -53,15 +55,12 @@ class CityPickerVC: UIViewController {
             print("Tracking not started..check permission")
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func setNavigation(){
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.red]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
-    */
     
     
     @IBAction func checkBtn(_ sender: Any) {
@@ -112,16 +111,19 @@ class CityPickerVC: UIViewController {
                 UIAction(title: "Celsius", image: UIImage(named: "degree-celsius"), handler: { (unit) in
                     self.selectedUnit = "metric"
                     self.showMenuButton.setTitle("Selected : Celsius", for: .normal)
+                    self.showMenuButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
                     print("Choosen Unit is \(self.selectedUnit)")
                 }),
                 UIAction(title: "Fahrenheit", image: UIImage(named: "degree-fahrenheit"), handler: { (_) in
                     self.selectedUnit = "imperial"
                     self.showMenuButton.setTitle("Selected : Fahrenheit", for: .normal)
+                    self.showMenuButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
                     print("Choosen Unit is \(self.selectedUnit)")
                 }),
                 UIAction(title: "Kelvin", image: UIImage(named: "kelvin-temperature"), handler: { (_) in
                     self.selectedUnit = "standard"
                     self.showMenuButton.setTitle("Selected : Kelvin", for: .normal)
+                    self.showMenuButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
                     print("Choosen Unit is \(self.selectedUnit)")
                 })
             ]
