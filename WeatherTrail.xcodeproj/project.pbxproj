@@ -95,6 +95,7 @@
 				D3BA8CBF27AEE95F00CB3FED /* LaunchScreen.storyboard */,
 				D3BA8CBA27AEE95E00CB3FED /* Main.storyboard */,
 				D3CF962E27C0210500FDDE7F /* DailyVC.swift */,
+				D3333AFB27B0422100A7A22B /* imgTest.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -146,7 +147,6 @@
 				D3BA8CB627AEE95E00CB3FED /* SceneDelegate.swift */,
 				D3BA8CBD27AEE95F00CB3FED /* Assets.xcassets */,
 				D3BA8CC227AEE95F00CB3FED /* Info.plist */,
-				D3333AFB27B0422100A7A22B /* imgTest.swift */,
 			);
 			path = WeatherTrail;
 			sourceTree = "<group>";

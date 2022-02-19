@@ -36,7 +36,10 @@ class CityPickerVC: UIViewController {
         cityPicker.delegate = self
         cityText.delegate = self
         check.isEnabled=false
+        PickerBg.image = UIImage(named: "second")
         configureButtonMenu()
+        navigationItem.title = "Settings"
+        setNavigation()
         
         //startTracking()
         
@@ -52,15 +55,12 @@ class CityPickerVC: UIViewController {
             print("Tracking not started..check permission")
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func setNavigation(){
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.red]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
-    */
     
     
     @IBAction func checkBtn(_ sender: Any) {
@@ -99,6 +99,7 @@ class CityPickerVC: UIViewController {
             lUtility.getCurrentAddress { (addr) in
                 // Find the location from current co-ordinates
                 self.currentL.text = "Current Address: \(addr)"
+                self.selectedCity = "\(addr)"
                 print("Tracking ended")
             }
             isValid = true
@@ -107,23 +108,29 @@ class CityPickerVC: UIViewController {
     func configureButtonMenu(){
         var menuItems: [UIAction] {
             return [
-                UIAction(title: "Celsius", image: UIImage(systemName: "sun.max"), handler: { (unit) in
+                UIAction(title: "Celsius", image: UIImage(named: "degree-celsius"), handler: { (unit) in
                     self.selectedUnit = "metric"
+                    self.showMenuButton.setTitle("Selected : Celsius", for: .normal)
+                    self.showMenuButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
                     print("Choosen Unit is \(self.selectedUnit)")
                 }),
-                UIAction(title: "Fahrenheit", image: UIImage(systemName: "moon"), handler: { (_) in
+                UIAction(title: "Fahrenheit", image: UIImage(named: "degree-fahrenheit"), handler: { (_) in
                     self.selectedUnit = "imperial"
+                    self.showMenuButton.setTitle("Selected : Fahrenheit", for: .normal)
+                    self.showMenuButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
                     print("Choosen Unit is \(self.selectedUnit)")
                 }),
-                UIAction(title: "Kelvin", image: UIImage(systemName: "trash"), handler: { (_) in
+                UIAction(title: "Kelvin", image: UIImage(named: "kelvin-temperature"), handler: { (_) in
                     self.selectedUnit = "standard"
+                    self.showMenuButton.setTitle("Selected : Kelvin", for: .normal)
+                    self.showMenuButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
                     print("Choosen Unit is \(self.selectedUnit)")
                 })
             ]
         }
 
         var demoMenu: UIMenu {
-            return UIMenu(title: "My menu", image: nil, identifier: nil, options: [], children: menuItems)
+            return UIMenu(title: "Select Your Preference ", image: nil, identifier: nil, options: [], children: menuItems)
         }
         
         showMenuButton.menu = demoMenu
@@ -131,33 +138,38 @@ class CityPickerVC: UIViewController {
 
     }
     
+    
+    @IBAction func checkTypeOfForecast(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            selectedForecastType = typeofForecast[0]
+            print("Type of forecast: \(selectedForecastType)")
+        case 1:
+            selectedForecastType = typeofForecast[1]
+            print("Type of forecast: \(selectedForecastType)")
+        default:
+            selectedForecastType = typeofForecast[0]
+            print("Type of forecast: \(selectedForecastType)")
+        }
+    }
+    
 }
 
 extension CityPickerVC:UIPickerViewDataSource{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component{
-        case 0:
-            return cityList.count
-        default:
-            return typeofForecast.count
-        }
-        
+        return cityList.count
+    
     }
 }
 
 extension CityPickerVC:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0{
             return cityList[row]
-        }else{
-            return typeofForecast[row]
-        }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -165,7 +177,6 @@ extension CityPickerVC:UIPickerViewDelegate{
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0{
             selectedCity = cityList[row]
             print("Tracking Started")
             lUtility.getGeoCoordOptional(address: "\(selectedCity)") { (locations) in
@@ -181,12 +192,6 @@ extension CityPickerVC:UIPickerViewDelegate{
                 
             }
             print("Tracking Ended")
-        }else{
-            selectedForecastType = typeofForecast[row]
-            print("Selected Forecast type: \(selectedForecastType)")
-        }
-        
-        
 
     }
 }
