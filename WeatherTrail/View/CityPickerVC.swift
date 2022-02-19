@@ -36,7 +36,7 @@ class CityPickerVC: UIViewController {
         cityPicker.delegate = self
         cityText.delegate = self
         check.isEnabled=false
-        //PickerBg.image = UIImage(named: "backgroundCity")
+        PickerBg.image = UIImage(named: "second")
         configureButtonMenu()
         
         //startTracking()
@@ -109,23 +109,26 @@ class CityPickerVC: UIViewController {
     func configureButtonMenu(){
         var menuItems: [UIAction] {
             return [
-                UIAction(title: "Celsius", image: UIImage(systemName: "sun.max"), handler: { (unit) in
+                UIAction(title: "Celsius", image: UIImage(named: "degree-celsius"), handler: { (unit) in
                     self.selectedUnit = "metric"
+                    self.showMenuButton.setTitle("Selected : Celsius", for: .normal)
                     print("Choosen Unit is \(self.selectedUnit)")
                 }),
-                UIAction(title: "Fahrenheit", image: UIImage(systemName: "moon"), handler: { (_) in
+                UIAction(title: "Fahrenheit", image: UIImage(named: "degree-fahrenheit"), handler: { (_) in
                     self.selectedUnit = "imperial"
+                    self.showMenuButton.setTitle("Selected : Fahrenheit", for: .normal)
                     print("Choosen Unit is \(self.selectedUnit)")
                 }),
-                UIAction(title: "Kelvin", image: UIImage(systemName: "trash"), handler: { (_) in
+                UIAction(title: "Kelvin", image: UIImage(named: "kelvin-temperature"), handler: { (_) in
                     self.selectedUnit = "standard"
+                    self.showMenuButton.setTitle("Selected : Kelvin", for: .normal)
                     print("Choosen Unit is \(self.selectedUnit)")
                 })
             ]
         }
 
         var demoMenu: UIMenu {
-            return UIMenu(title: "My menu", image: nil, identifier: nil, options: [], children: menuItems)
+            return UIMenu(title: "Select Your Preference ", image: nil, identifier: nil, options: [], children: menuItems)
         }
         
         showMenuButton.menu = demoMenu

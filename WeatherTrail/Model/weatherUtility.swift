@@ -76,8 +76,12 @@ class weatherUtility{
             return UIImage(named: "backgroundSunny")!
         case "Clouds":
             return UIImage(named: "backgroundCloudy")!
-        case "Rain":
+        case "ThunderStorm":
            return UIImage(named: "backgroundRainy")!
+        case "Snow":
+            return UIImage(named: "snowy")!
+        case "Rain":
+            return UIImage(named: "backgroundCity")!
         default:
             return UIImage(named: "backgroundSunny")!
         }
