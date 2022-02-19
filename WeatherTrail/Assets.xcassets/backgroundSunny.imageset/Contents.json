@@ -1,15 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "backgroundSunny.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "joshua-sortino-XMcoTHgNcQA-unsplash.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "david-monje-77AW8rM9KGg-unsplash.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
