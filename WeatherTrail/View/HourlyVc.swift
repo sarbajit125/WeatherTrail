@@ -66,7 +66,14 @@ extension HourlyVc:UITableViewDataSource{
         let std = forecastVM.hourlyList[indexPath.row]
         cell.contentView.backgroundColor = UIColor.clear
         print("Weather Main:\(std.weather[0].main)")
+        
         bgImg.image = LocalDate.getBackground(main: std.weather[0].main)
+        
+      //  let bgImg = UIImageView(frame: UIScreen.main.bounds)
+       // bgImg.image = UIImage(named: "first")
+       // bgImg.contentMode = UIView.ContentMode.scaleAspectFill
+//        self.view.insertSubview(bgImg, at: 0)
+        
         let windDegree = std.wind_deg
         windDir.image = LocalDate.getWindArrow(dir: windDegree)
         let days = LocalDate.getTime(dt: std.dt)

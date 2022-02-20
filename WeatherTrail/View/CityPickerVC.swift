@@ -9,6 +9,8 @@ import UIKit
 
 class CityPickerVC: UIViewController {
     
+    //let userDate = UserDefaults()
+    
     let lUtility = LocationUtility.instance
 
     @IBOutlet weak var cityText: UITextField!
