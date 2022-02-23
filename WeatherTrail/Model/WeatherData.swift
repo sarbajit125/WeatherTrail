@@ -46,3 +46,8 @@ struct HourlyResult:Codable{
 struct HourlyForecast:Codable{
     var hourly : [HourlyResult]
 }
+
+enum Forecast{
+    	case hourly(HourlyForecast)
+        case daily(DailyForecast)
+}

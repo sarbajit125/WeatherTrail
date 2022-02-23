@@ -20,13 +20,14 @@ class CityPickerVC: UIViewController {
     @IBOutlet weak var showMenuButton: UIButton!
     @IBOutlet weak var check: UIButton!
     let cityList = ["Bangalore", "Mumbai", "Delhi", "Hyderabad"]
-    let typeofForecast = ["Daily","Hourly"]
+    let typeofForecast = ["daily","hourly"]
     var isValid = false
     var selectedCity = ""
     var selectedlat:Double = 0.0
     var selectedLong:Double = 0.0
-    var selectedForecastType = ""
-    var selectedUnit = ""
+    var selectedForecastType = "daily"
+    var selectedUnit = "metric"
+    var excludeThis = "hourly"
     
     
     
@@ -66,13 +67,14 @@ class CityPickerVC: UIViewController {
     @IBAction func checkBtn(_ sender: Any) {
         if isValid == true{
             
-            if selectedForecastType == "Hourly"{
+            if selectedForecastType == "hourly"{
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "HourlyVC") as! HourlyVc
                 print(selectedCity)
                 vc.currentLocation=selectedCity
                 vc.currentLat = selectedlat
                 vc.currentLong = selectedLong
                 vc.currentUnit = selectedUnit
+                vc.excludeThis = excludeThis
                 //self.show(vc, animated: true, completion: nil)
                 self.show(vc, sender: nil)
             }else{
@@ -83,6 +85,7 @@ class CityPickerVC: UIViewController {
                 vc.currentLat = selectedlat
                 vc.currentLong = selectedLong
                 vc.currentUnit = selectedUnit
+                vc.excludeThis = excludeThis
                 //self.show(vc, animated: true, completion: nil)
                 self.show(vc, sender: nil)
             }
@@ -144,13 +147,15 @@ class CityPickerVC: UIViewController {
         case 0:
             selectedForecastType = typeofForecast[0]
             print("Type of forecast: \(selectedForecastType)")
+            excludeThis = "hourly"
         case 1:
             selectedForecastType = typeofForecast[1]
             print("Type of forecast: \(selectedForecastType)")
+            excludeThis = "daily"
         default:
-            selectedForecastType = typeofForecast[0]
-            print("Type of forecast: \(selectedForecastType)")
+           print("Faced Error...")
         }
+        
     }
     
 }

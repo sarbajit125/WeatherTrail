@@ -20,6 +20,7 @@ class HourlyVc: UIViewController {
     var currentLat:Double = 0.0
     var currentLong:Double = 0.0
     var currentUnit = ""
+    var excludeThis = ""
     var LocalDate = weatherUtility()
     var forecastVM = ForecastWeatherViewModel()
     
@@ -35,9 +36,13 @@ class HourlyVc: UIViewController {
 //            self.hourlyList = data.hourly
 //            self.tbl.reloadData()
 //        }
-        forecastVM.twentyFourHoursForecast(Lat: currentLat, Long: currentLong, unit: currentUnit) {
+//        forecastVM.twentyFourHoursForecast(Lat: currentLat, Long: currentLong, unit: currentUnit) {
+//            self.tbl.reloadData()
+//        }
+        forecastVM.getWeatherData(Lat: currentLat, Long: currentLong, unit: currentUnit, exclude: excludeThis) {
             self.tbl.reloadData()
         }
+        
         print("currentLat:\(currentLat)")
         print("currentLong:\(currentLong)")
         getCurrentUnit = LocalDate.getTeempUnit(selectedUnit: currentUnit)

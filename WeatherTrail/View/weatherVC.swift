@@ -23,6 +23,7 @@ class weatherVC: UIViewController {
     var currentLat:Double = 0.0
     var currentLong:Double = 0.0
     var currentUnit = ""
+    var excludeThis = ""
     
     var Wutils = weatherUtility()
     
@@ -34,11 +35,14 @@ class weatherVC: UIViewController {
         tbl.delegate = self
         tbl.backgroundColor = UIColor.clear
         currentL.text = "Location: \(currentLocation)"
-        forecastVM.sevenDayForecast(Lat: currentLat, Long: currentLong, unit: currentUnit) {
+
+        forecastVM.getWeatherData(Lat: currentLat, Long: currentLong, unit: currentUnit, exclude: excludeThis) {
             self.tbl.reloadData()
         }
-        print("currentLat:\(currentLat)")
-        print("currentLong:\(currentLong)")
+        
+//        print("currentLat:\(currentLat)")
+//        print("currentLong:\(currentLong)")
+        print("ExludedForecast: \(excludeThis)")
         getCurrentUnit = Wutils.getTeempUnit(selectedUnit: currentUnit)
         // Do any additional setup after loading the view.
     }
