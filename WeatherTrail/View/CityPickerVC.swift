@@ -66,29 +66,15 @@ class CityPickerVC: UIViewController {
     
     @IBAction func checkBtn(_ sender: Any) {
         if isValid == true{
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "confirmvc") as! weatherVC
+            vc.currentLocation=selectedCity
+            vc.currentLat = selectedlat
+            vc.currentLong = selectedLong
+            vc.currentUnit = selectedUnit
+            vc.excludeThis = excludeThis
+            vc.currentForecastType = selectedForecastType
+            self.show(vc, sender: nil)
             
-            if selectedForecastType == "hourly"{
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "HourlyVC") as! HourlyVc
-                print(selectedCity)
-                vc.currentLocation=selectedCity
-                vc.currentLat = selectedlat
-                vc.currentLong = selectedLong
-                vc.currentUnit = selectedUnit
-                vc.excludeThis = excludeThis
-                //self.show(vc, animated: true, completion: nil)
-                self.show(vc, sender: nil)
-            }else{
-                print("isValid true")
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "confirmvc") as! weatherVC
-                print(selectedCity)
-                vc.currentLocation=selectedCity
-                vc.currentLat = selectedlat
-                vc.currentLong = selectedLong
-                vc.currentUnit = selectedUnit
-                vc.excludeThis = excludeThis
-                //self.show(vc, animated: true, completion: nil)
-                self.show(vc, sender: nil)
-            }
             
            
         }
