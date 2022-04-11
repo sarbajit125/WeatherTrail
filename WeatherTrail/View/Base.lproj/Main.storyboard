@@ -620,7 +620,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.66666666669999997" alpha="0.71104097682119205" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="Ngx-s4-O8P" firstAttribute="leading" secondItem="oyC-U7-gJn" secondAttribute="trailing" constant="8" symbolic="YES" id="88d-DB-hP5"/>
                                                 <constraint firstItem="Ngx-s4-O8P" firstAttribute="centerY" secondItem="SGA-9d-3Yt" secondAttribute="centerY" id="9V6-XF-Zgy"/>
@@ -639,6 +639,11 @@
                                                 <constraint firstItem="dwY-r1-Klz" firstAttribute="firstBaseline" secondItem="oyC-U7-gJn" secondAttribute="firstBaseline" id="x5K-eP-cc6"/>
                                                 <constraint firstItem="dwY-r1-Klz" firstAttribute="leading" secondItem="oyP-tT-n82" secondAttribute="leading" constant="3" id="xTW-ep-zGg"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <integer key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>

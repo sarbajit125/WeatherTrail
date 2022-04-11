@@ -93,5 +93,12 @@ class weatherUtility{
         let dayInweek = dateFormatter.string(from: date)
         return dayInweek
     }
+    
+    func localTime(in timeZone: String) -> String {
+        let f = ISO8601DateFormatter()
+        f.formatOptions = [.withInternetDateTime]
+        f.timeZone = TimeZone(identifier: timeZone)
+        return f.string(from: Date())
+    }
 
 }

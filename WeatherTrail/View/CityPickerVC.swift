@@ -199,6 +199,7 @@ extension CityPickerVC:UITextFieldDelegate{
                     self.currentL.text = "\(input) co-ord: \(loc.coordinate.latitude), \(loc.coordinate.longitude)"
                     self.selectedlat = loc.coordinate.latitude
                     self.selectedLong = loc.coordinate.longitude
+                    self.selectedCity = input
                     self.isValid = true
                     self.check.isEnabled = true
                 }else{
