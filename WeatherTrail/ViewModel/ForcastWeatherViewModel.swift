@@ -10,6 +10,7 @@ import Foundation
 class ForecastWeatherViewModel{
     var weatherList : [DailyResult] = []
     var hourlyList : [HourlyResult] = []
+    var getTimezone = ""
 
     let model = AFUtility.instance   // strong reference of model
        
@@ -31,10 +32,12 @@ class ForecastWeatherViewModel{
             if exclude == "hourly"{
                 let forecast = data as! DailyForecast
                 self.weatherList = forecast.daily
+                self.getTimezone = forecast.timezone
                 completion()
             }else{
                 let forecast = data as! HourlyForecast
                 self.hourlyList = forecast.hourly
+                self.getTimezone = forecast.timezone
                 completion()
             }
             

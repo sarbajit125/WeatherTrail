@@ -41,12 +41,13 @@ class weatherVC: UIViewController {
         forecastVM.getWeatherData(Lat: currentLat, Long: currentLong, unit: currentUnit, exclude: excludeThis) {
             self.tbl.reloadData()
         }
-        DateL.text = Date().description(with: .current)
+       // DateL.text = Date().description(with: .current)
 //        print("currentLat:\(currentLat)")
 //        print("currentLong:\(currentLong)")
         print("ExludedForecast: \(excludeThis)")
-        print("current FOrecast Type: \(currentForecastType)")
+        print("current Forecast Type: \(currentForecastType)")
         getCurrentUnit = Wutils.getTeempUnit(selectedUnit: currentUnit)
+        DateL.text = Wutils.localTime(in: forecastVM.getTimezone)
         // Do any additional setup after loading the view.
     }
     
@@ -95,7 +96,7 @@ extension weatherVC:UITableViewDataSource{
             bgImg.image = Wutils.getBackground(main: std.weather[0].main)
             let windDegree = std.wind_deg
             windDir.image = Wutils.getWindArrow(dir: windDegree)
-            let days = Wutils.getTime(dt: std.dt)
+            let days = Wutils.getTime(dt: std.dt,timeZ:forecastVM.getTimezone)
             print("\(days)")
             let imgURL = "http://openweathermap.org/img/wn/\(std.weather[0].icon)@2x.png"// HTTP does not work
             forecastVM.getImages(imgURL: imgURL) { (imgData) in

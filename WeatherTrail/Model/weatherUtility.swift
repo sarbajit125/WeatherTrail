@@ -11,11 +11,11 @@ import UIKit
 
 class weatherUtility{
     
-    func getTime(dt:Double)->String{
+    func getTime(dt:Double,timeZ:String)->String{
         let date = Date(timeIntervalSince1970: dt)
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = DateFormatter.Style.medium
-        dateFormatter.timeZone = .current
+        dateFormatter.timeZone = TimeZone(identifier: timeZ)
         let localDate = dateFormatter.string(from: date)
         return localDate
     }

@@ -29,6 +29,7 @@ struct temp:Codable{
 }
 
 struct DailyForecast:Codable{
+    var timezone: String
     var daily:[DailyResult]
 }
 
@@ -44,6 +45,7 @@ struct HourlyResult:Codable{
 }
 
 struct HourlyForecast:Codable{
+    var timezone: String
     var hourly : [HourlyResult]
 }
 

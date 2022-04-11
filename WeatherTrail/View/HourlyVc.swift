@@ -74,7 +74,7 @@ extension HourlyVc:UITableViewDataSource{
         bgImg.image = LocalDate.getBackground(main: std.weather[0].main)
         let windDegree = std.wind_deg
         windDir.image = LocalDate.getWindArrow(dir: windDegree)
-        let days = LocalDate.getTime(dt: std.dt)
+        let days = LocalDate.getTime(dt: std.dt,timeZ: forecastVM.getTimezone)
         print("\(days)")
         let imgURL = "http://openweathermap.org/img/wn/\(std.weather[0].icon)@2x.png"// HTTP does not work
         forecastVM.getImages(imgURL: imgURL) { (imgData) in
